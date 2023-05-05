@@ -21,13 +21,7 @@ const addToLiked = (id) => {
 };
 
 const reportPost = (id) => {
-  if (reportedPostsId.includes(id)) {
-    return;
-  }
-  else {
-    reportedPostsId.push(id);
-  }
-  // reportedPostsId.push(id);
+  reportedPostsId.push(id);
   const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
   showPosts(remainingPosts);
 };
@@ -152,6 +146,8 @@ const showPosts = (posts) => {
 
 const displayLikedPosts = () => {
   const likedPosts = getLikedPosts();
+  document.getElementById("liked").textContent = '';
+
   likedPosts.forEach((post) => {
     const div = createPost(post);
     document.getElementById("liked").appendChild(div);
@@ -163,7 +159,6 @@ const displayReportedPosts = () => {
   document.getElementById("reported").textContent = '';
 
   reportedPosts.forEach((post) => {
-    // console.log(post)
     const div = createPost(post);
     document.getElementById("reported").appendChild(div);
   });
